@@ -17,9 +17,14 @@ namespace ApiRouletteMasiv.Repository
             _signInManager = signInManager;
         }
 
-        public async Task<IdentityResult> CreateAsync(ApplicationUser ApplicationUser)
+        public async Task<IdentityResult> CreateAsync(ApplicationUser ApplicationUser, string Password)
         {
-            return await _userManager.CreateAsync(ApplicationUser);
+            return await _userManager.CreateAsync(ApplicationUser, Password);
+        }
+
+        public async Task<ApplicationUser> FindByEmailAsync(string Email)
+        {
+            return await _userManager.FindByEmailAsync(Email);
         }
 
         public async Task<SignInResult> PasswordSignInAsync(string UserName, string Password, bool isPersistent, bool lockoutOnFailure)

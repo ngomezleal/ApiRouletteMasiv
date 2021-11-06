@@ -13,8 +13,8 @@ namespace ApiRouletteMasiv
         }
 
         public DbSet<Roulette> Roulettes { get; set; }
-        public DbSet<Wallet> UserWallets { get; set; }
-        public DbSet<Bet> UserBets { get; set; }
+        public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<Bet> Bets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,16 +24,13 @@ namespace ApiRouletteMasiv
             {
                 entity.ToTable("Roulette");
 
-                entity.HasIndex(e => e.UserId)
-                    .IsUnique(false);
-
                 entity.HasIndex(e => e.Status)
                     .IsUnique(false);
             });
 
             modelBuilder.Entity<Wallet>(entity =>
             {
-                entity.ToTable("UserWallet");
+                entity.ToTable("Wallet");
 
                 entity.HasIndex(e => e.UserId)
                     .IsUnique(false);
@@ -41,9 +38,12 @@ namespace ApiRouletteMasiv
 
             modelBuilder.Entity<Bet>(entity =>
             {
-                entity.ToTable("UserBet");
+                entity.ToTable("Bet");
 
                 entity.HasIndex(e => e.IdRoulette)
+                    .IsUnique(false);
+
+                entity.HasIndex(e => e.UserId)
                     .IsUnique(false);
             });
 

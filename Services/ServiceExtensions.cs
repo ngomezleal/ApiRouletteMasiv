@@ -20,6 +20,8 @@ namespace ApiRouletteMasiv.Services
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddScoped<ServiceAccount, ServiceAccount>();
             services.AddScoped<ServiceRoulette, ServiceRoulette>();
+            services.AddScoped<ServiceWallet, ServiceWallet>();
+            services.AddScoped<ServiceBet, ServiceBet>();
         }
     }
 }

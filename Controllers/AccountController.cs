@@ -24,5 +24,18 @@ namespace ApiRouletteMasiv.Controllers
             else
                 return BadRequest("Username or password invalid");
         }
+
+        [HttpPost("LoginUser")]
+        public async Task<ActionResult<UserToken>> Login([FromBody] UserInfo userInfo)
+        {
+            var result = await _serviceAccount.LoginUserAsync(userInfo);
+            if (result.Status)
+                return result;
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return BadRequest(ModelState);
+            }
+        }
     }
 }

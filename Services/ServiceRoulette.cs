@@ -15,35 +15,31 @@ namespace ApiRouletteMasiv.Services
             _repoWrapper = repoWrapper;
         }
 
+        public async Task<List<Roulette>> GetListRouletteAsync()
+        {
+            return await _repoWrapper.Roulette.GetListRouletteAsync();
+        }
         public async Task<Roulette> NewRouletteAsync(Roulette roulette)
         {
-            roulette.CloseAt = DateTime.UtcNow;
+            roulette.Trace = DateTime.UtcNow;
             _repoWrapper.Roulette.NewRoulette(roulette);
             await _repoWrapper.SaveAsync();
 
             return roulette;
         }
-
-        public async Task<Roulette> GetRouletteByIdAsync(int Id)
+        public async Task<string> OpenRouletteAsync(int Id)
         {
-            return await _repoWrapper.Roulette.GetRouletteByIdAsync(Id);
-        }
-
-        public async Task<List<RouletteDto>> GetListRouletteAsync(string UserId)
-        {
-            List<RouletteDto> rouletteDtos = new List<RouletteDto>();
-            var roulette = await _repoWrapper.Roulette.GetListRouletteAsync(UserId);
-            foreach (var item in roulette)
+            var roulette = await _repoWrapper.Roulette.GetRouletteByIdAsync(Id);
+            if (roulette != null)
             {
-                RouletteDto rouletteDto = new RouletteDto();
-                rouletteDto.Id = item.Id;
-                rouletteDto.Status = item.Status;
-                rouletteDto.OpenAt = item.OpenAt;
-                rouletteDto.CloseAt = item.CloseAt;
-                rouletteDtos.Add(rouletteDto);
+                roulette.Status = Miscellaneous.RouletteStatus.Open.ToString();
+                roulette.OpenAt = DateTime.UtcNow;
+                _repoWrapper.Roulette.UpdateRoulette(roulette);
+                await _repoWrapper.SaveAsync();
+                return Miscellaneous.RouletteStatus.Success.ToString();
             }
-
-            return rouletteDtos;
+            else
+                return Miscellaneous.RouletteStatus.Denied.ToString();
         }
     }
 }

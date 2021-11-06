@@ -1,5 +1,4 @@
-﻿using ApiRouletteMasiv.Dto;
-using ApiRouletteMasiv.Models;
+﻿using ApiRouletteMasiv.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,7 +7,10 @@ namespace ApiRouletteMasiv.Contracts
     public interface IRepositoryRoulette
     {
         Task<Roulette> GetRouletteByIdAsync(int Id);
-        Task<List<Roulette>> GetListRouletteAsync(string UserId);
+        Task<List<Roulette>> GetListRouletteAsync();
+        Task<Roulette> GetRouletteByStatusAsync(string Status);
         void NewRoulette(Roulette roulette);
+        void UpdateRoulette(Roulette roulette);
+        void DeleteRoulette(Roulette roulette);
     }
 }

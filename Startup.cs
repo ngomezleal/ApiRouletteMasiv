@@ -28,8 +28,15 @@ namespace ApiRouletteMasiv
         {
             services.ConfigureContext(Configuration);
             services.ConfigureRepositoryWrapper();
-            //services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(option =>
+                {
+                    option.Password.RequireDigit = false;
+                    option.Password.RequiredLength = 1;
+                    option.Password.RequireNonAlphanumeric = false;
+                    option.Password.RequireUppercase = false;
+                    option.Password.RequireLowercase = false;
+                    option.SignIn.RequireConfirmedEmail = false;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 

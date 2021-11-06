@@ -3,6 +3,10 @@
     public enum RouletteStatus
     {
         Open,
-        Close
+        Close,
+        Success,
+        Denied,
+        RouletteExist,
+        RouletteNotExist
     }
 }

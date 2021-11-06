@@ -6,7 +6,8 @@ namespace ApiRouletteMasiv.Contracts
 {
     public interface IRepositoryAccount
     {
-        Task<IdentityResult> CreateAsync(ApplicationUser ApplicationUser);
+        Task<IdentityResult> CreateAsync(ApplicationUser ApplicationUser, string Password);
+        Task<ApplicationUser> FindByEmailAsync(string Email);
         Task<SignInResult> PasswordSignInAsync(string UserName, string Password, bool isPersistent, bool lockoutOnFailure);
     }
 }

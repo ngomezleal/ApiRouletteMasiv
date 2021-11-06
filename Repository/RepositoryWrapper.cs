@@ -13,6 +13,8 @@ namespace ApiRouletteMasiv.Repository
 
         private IRepositoryAccount _account;
         private IRepositoryRoulette _roulette;
+        private IRepositoryWallet _wallet;
+        private IRepositoryBet _bet;
 
         public RepositoryWrapper(ApplicationDbContext repositoryContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
@@ -38,6 +40,26 @@ namespace ApiRouletteMasiv.Repository
                 if (_roulette == null)
                     _roulette = new RepositoryRoulette(_repoContext);
                 return _roulette;
+            }
+        }
+
+        public IRepositoryWallet Wallet
+        {
+            get
+            {
+                if (_wallet== null)
+                    _wallet = new RepositoryWallet(_repoContext);
+                return _wallet;
+            }
+        }
+
+        public IRepositoryBet Bet
+        {
+            get
+            {
+                if (_bet == null)
+                    _bet = new RepositoryBet(_repoContext);
+                return _bet;
             }
         }
 

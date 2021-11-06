@@ -1,8 +1,6 @@
 ﻿using ApiRouletteMasiv.Contracts;
-using ApiRouletteMasiv.Dto;
 using ApiRouletteMasiv.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,9 +13,14 @@ namespace ApiRouletteMasiv.Repository
         {
         }
 
-        public async Task<List<Roulette>> GetListRouletteAsync(string UserId)
+        public void DeleteRoulette(Roulette roulette)
         {
-            return await FindByCondition(r => r.UserId.Equals(UserId)).ToListAsync();
+            Delete(roulette);
+        }
+
+        public async Task<List<Roulette>> GetListRouletteAsync()
+        {
+            return await FindAll().ToListAsync();
         }
 
         public async Task<Roulette> GetRouletteByIdAsync(int Id)
@@ -25,9 +28,19 @@ namespace ApiRouletteMasiv.Repository
             return await FindByCondition(r => r.Id.Equals(Id)).FirstOrDefaultAsync();
         }
 
+        public async Task<Roulette> GetRouletteByStatusAsync(string Status)
+        {
+            return await FindByCondition(r => r.Status.Equals(Status)).FirstOrDefaultAsync();
+        }
+
         public void NewRoulette(Roulette roulette)
         {
             Create(roulette);
+        }
+
+        public void UpdateRoulette(Roulette roulette)
+        {
+            Update(roulette);
         }
     }
 }

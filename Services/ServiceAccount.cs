@@ -5,7 +5,6 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,30 +21,30 @@ namespace ApiRouletteMasiv.Services
             _configuration = configuration;
         }
 
-        public async Task<UserToken> CreateUserAsync(UserInfo model)
+        public async Task<UserToken> CreateUserAsync(UserInfo userInfo)
         {
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-            var result = await _repoWrapper.Account.CreateAsync(user);
+            var user = new ApplicationUser { UserName = userInfo.Email, Email = userInfo.Email };
+            var result = await _repoWrapper.Account.CreateAsync(user, userInfo.Password);
             if (result.Succeeded)
-                return await BuildToken(model);
+            {
+                var appUser = await _repoWrapper.Account.FindByEmailAsync(userInfo.Email);
+                return await BuildToken(userInfo, appUser);
+            }
             else
                 return new UserToken();
         }
-
         public async Task<UserToken> LoginUserAsync(UserInfo userInfo)
         {
             var result = await _repoWrapper.Account.PasswordSignInAsync(userInfo.Email, userInfo.Password, isPersistent: false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return await BuildToken(userInfo);
+                var appUser = await _repoWrapper.Account.FindByEmailAsync(userInfo.Email);
+                return await BuildToken(userInfo, appUser);
             }
             else
-            {
                 return new UserToken();
-            }
         }
-
-        private async Task<UserToken> BuildToken(UserInfo userInfo)
+        private async Task<UserToken> BuildToken(UserInfo userInfo, ApplicationUser user)
         {
             try
             {
@@ -53,6 +52,7 @@ namespace ApiRouletteMasiv.Services
                 {
                     new Claim(JwtRegisteredClaimNames.UniqueName, userInfo.Email),
                     new Claim(ClaimTypes.Name, userInfo.Email),
+                    new Claim("UserId", $"{user.Id}"),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
