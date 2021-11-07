@@ -171,4 +171,4 @@ _[POST] host:port/api/Bet/CloseBet/{Id} | Example: https://localhost:44302/api/B
             }
          ]
       }
-}
+	}
