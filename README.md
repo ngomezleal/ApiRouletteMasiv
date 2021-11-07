@@ -103,6 +103,25 @@ _[PUT] host:port/api/Roulette/OpenRoulette/{Id} | Example: https://localhost:443
 	  "status": "Success"
 	}
 
+_.-Gell All Roulettes_
+
+_[GET] host:port/api/Roulette/GetAllRoulette | Example: https://localhost:49153/api/Roulette/GetAllRoulette_ 
+	
+	**Token Required**
+
+	"Result" (Example)
+	{
+	  "roulettes": [
+       {
+	     "id": 14,
+		 "status": "Close",
+		 "openAt": "2021-11-07T07:15:44.3748212",
+		 "closeAt": "2021-11-07T07:17:13.7101721",
+		 "trace": "2021-11-07T07:15:19.0755572"
+       }
+      ]
+    }
+
 _4.- Bet_
 
 _.-Start Bet_
@@ -111,10 +130,17 @@ _[POST] host:port/api/Bet/StartBet | Example: https://localhost:44302/api/Bet/St
 	
 	**Token Required**
 
-	"Body Params" (Example)
+	"Body Params" (Example 1)
 	{
 	  "IdRoulette": 13,
 	  "BetValue" : "Red",
+	  "BetAmount" : 3500
+	}
+
+	"Body Params" (Example 2)
+	{
+	  "IdRoulette": 13,
+	  "BetValue" : "21",
 	  "BetAmount" : 3500
 	}
 
