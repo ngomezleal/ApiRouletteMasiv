@@ -169,6 +169,6 @@ _[POST] host:port/api/Bet/CloseBet/{Id} | Example: https://localhost:44302/api/B
 		  "status": "Loser",
 		  "trace": "2021-11-07T07:16:10.6490759"
 		}
-	   ]
+	    ]
       }
 	}
