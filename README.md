@@ -160,15 +160,15 @@ _[POST] host:port/api/Bet/CloseBet/{Id} | Example: https://localhost:44302/api/B
 	{
 	  "results": {
 	    "status": "Success",
-		  "bets": [
-            {
-			  "id": 12,
-			  "idRoulette": 14,
-			  "betAmount": 3500.000000,
-			  "betValue": "Red",
-			  "status": "Loser",
-			  "trace": "2021-11-07T07:16:10.6490759"
-            }
-         ]
+		"bets": [
+		{
+		  "id": 12,
+		  "idRoulette": 14,
+		  "betAmount": 3500.000000,
+		  "betValue": "Red",
+		  "status": "Loser",
+		  "trace": "2021-11-07T07:16:10.6490759"
+		}
+	   ]
       }
 	}
