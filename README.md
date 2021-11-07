@@ -8,7 +8,7 @@ API representing an online betting roulette. The API is developed in .Net core 5
 		update-database
 
 ## URLs (EndPoints)
-	_1 Account_
+_1 Account_
 
 	_Create User_
 	_[POST] host:port/api/account/CreateUser | Example: https://localhost:44302/api/account/CreateUser_ 
