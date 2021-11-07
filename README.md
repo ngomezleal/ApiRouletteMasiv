@@ -57,3 +57,51 @@ _[POST] host:port/api/account/LoginUser | Example: https://localhost:44302/api/a
 	  "expiration": "2021-11-07T07:19:54.0400554Z",
 	  "status": true
 	}
+
+_2.- Wallet_
+
+_.-Create Wallet_
+
+_[POST] host:port/api/Wallet/CreateWallet | Example: https://localhost:44302/api/Wallet/CreateWallet_ 
+	
+	**Token Required**
+
+	"Body Params" (Example)
+	{
+	  "total": 20000,
+	}
+
+	"Result" (Example)
+	{
+	  "id": 18,
+	  "userId": "67a60e4e-1daf-47f8-8bd6-228e981ef897",
+	  "total": 20000,
+	  "trace": "2021-11-06T17:37:54.1498929Z"
+	}
+
+_3.- Roulette_
+
+_.-New Wallet_
+
+_[POST] host:port/api/Roulette/NewRoulette | Example: https://localhost:44302/api/Roulette/NewRoulette_ 
+	
+	**Token Required**
+
+	"Result" (Example)
+	{
+	  "idRoulette": 13
+	}
+
+_.-New Wallet_
+
+_[POST] host:port/api/Roulette/OpenRoulette/{Id} | Example: https://localhost:44302/api/Roulette/OpenRoulette/13_ 
+	
+	**Token Required**
+
+	"Result" (Example)
+	{
+	  "idRoulette": 13
+	}
+
+
+
