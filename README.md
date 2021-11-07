@@ -103,5 +103,45 @@ _[PUT] host:port/api/Roulette/OpenRoulette/{Id} | Example: https://localhost:443
 	  "status": "Success"
 	}
 
+_4.- Bet_
 
+_.-Start Bet_
 
+_[POST] host:port/api/Bet/StartBet | Example: https://localhost:44302/api/Bet/StartBet_ 
+	
+	**Token Required**
+
+	"Body Params" (Example)
+	{
+	  "IdRoulette": 13,
+	  "BetValue" : "Red",
+	  "BetAmount" : 3500
+	}
+
+	"Result" (Example)
+	{
+	  "status": "Success"
+	}
+
+_.-Close Bet_
+
+_[POST] host:port/api/Bet/CloseBet/{Id} | Example: https://localhost:44302/api/Bet/CloseBet/13_ 
+	
+	**Token Required**
+
+	"Result" (Example)
+	{
+	  "results": {
+	    "status": "Success",
+		  "bets": [
+            {
+                "id": 12,
+                "idRoulette": 14,
+                "betAmount": 3500.000000,
+                "betValue": "Red",
+                "status": "Loser",
+                "trace": "2021-11-07T07:16:10.6490759"
+            }
+         ]
+      }
+}
