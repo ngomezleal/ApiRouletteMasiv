@@ -112,12 +112,12 @@ _[GET] host:port/api/Roulette/GetAllRoulette | Example: https://localhost:49153/
 	"Result" (Example)
 	{
 	  "roulettes": [
-	    {
-		  "id": 14,
-		  "status": "Close",
-		  "openAt": "2021-11-07T07:15:44.3748212",
-		  "closeAt": "2021-11-07T07:17:13.7101721",
-		  "trace": "2021-11-07T07:15:19.0755572"
+	   {
+		 "id": 14,
+		 "status": "Close",
+		 "openAt": "2021-11-07T07:15:44.3748212",
+		 "closeAt": "2021-11-07T07:17:13.7101721",
+		 "trace": "2021-11-07T07:15:19.0755572"
 		}
 	  ]
 	}
