@@ -21,7 +21,7 @@ namespace ApiRouletteMasiv.Services
             var result = false;
             string status = string.Empty;
 
-            var roulette = await _repoWrapper.Roulette.GetRouletteByIdAsync(betParams.IdRoulette);
+            var roulette = await _repoWrapper.Roulette.GetRouletteByIdAsync(betParams.IdRoulette, Miscellaneous.RouletteStatus.Open.ToString());
             if (roulette != null)
             {
                 if (betParams.BetAmount > (decimal)Miscellaneous.RouletteAmounts.BetValueMin && betParams.BetAmount <= (decimal)Miscellaneous.RouletteAmounts.BetValueMax)
@@ -65,7 +65,7 @@ namespace ApiRouletteMasiv.Services
                     status = Miscellaneous.BetStatus.Success.ToString();
             }
             else
-                status = Miscellaneous.RouletteStatus.RouletteNotExist.ToString();
+                status = $"{Miscellaneous.RouletteStatus.RouletteNotExist.ToString()} or is {Miscellaneous.RouletteStatus.Close.ToString()}";
 
             return status;
         }
@@ -75,7 +75,7 @@ namespace ApiRouletteMasiv.Services
             BetResult betResult = new BetResult();
             try
             {
-                var roulette = await _repoWrapper.Roulette.GetRouletteByIdAsync(IdRoulette);
+                var roulette = await _repoWrapper.Roulette.GetRouletteByIdAsync(IdRoulette, Miscellaneous.RouletteStatus.Open.ToString());
                 if (roulette != null)
                 {
                     var bets = await _repoWrapper.Bet.GetListBetRouletteIdAsync(IdRoulette);
@@ -146,7 +146,7 @@ namespace ApiRouletteMasiv.Services
                     status = Miscellaneous.BetStatus.Success.ToString();
                 }
                 else
-                    status = Miscellaneous.RouletteStatus.RouletteNotExist.ToString();
+                    status = $"{Miscellaneous.RouletteStatus.RouletteNotExist.ToString()} or is {Miscellaneous.RouletteStatus.Close.ToString()}";
             }
             catch (Exception ex)
             {

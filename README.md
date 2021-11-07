@@ -143,6 +143,7 @@ _[POST] host:port/api/Bet/StartBet | Example: https://localhost:44302/api/Bet/St
 	  "BetValue" : "21",
 	  "BetAmount" : 3500
 	}
+	--
 
 	"Result" (Example)
 	{

@@ -28,6 +28,11 @@ namespace ApiRouletteMasiv.Repository
             return await FindByCondition(r => r.Id.Equals(Id)).FirstOrDefaultAsync();
         }
 
+        public async Task<Roulette> GetRouletteByIdAsync(int Id, string Status)
+        {
+            return await FindByCondition(r => r.Id.Equals(Id) && r.Status.Equals(Status)).FirstOrDefaultAsync();
+        }
+
         public async Task<Roulette> GetRouletteByStatusAsync(string Status)
         {
             return await FindByCondition(r => r.Status.Equals(Status)).FirstOrDefaultAsync();

@@ -7,6 +7,7 @@ namespace ApiRouletteMasiv.Contracts
     public interface IRepositoryRoulette
     {
         Task<Roulette> GetRouletteByIdAsync(int Id);
+        Task<Roulette> GetRouletteByIdAsync(int Id, string Status);
         Task<List<Roulette>> GetListRouletteAsync();
         Task<Roulette> GetRouletteByStatusAsync(string Status);
         void NewRoulette(Roulette roulette);
