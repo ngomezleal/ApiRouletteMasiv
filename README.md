@@ -81,7 +81,7 @@ _[POST] host:port/api/Wallet/CreateWallet | Example: https://localhost:44302/api
 
 _3.- Roulette_
 
-_.-New Wallet_
+_.-New Roulette_
 
 _[POST] host:port/api/Roulette/NewRoulette | Example: https://localhost:44302/api/Roulette/NewRoulette_ 
 	
@@ -92,15 +92,15 @@ _[POST] host:port/api/Roulette/NewRoulette | Example: https://localhost:44302/ap
 	  "idRoulette": 13
 	}
 
-_.-New Wallet_
+_.-Open Roulette_
 
-_[POST] host:port/api/Roulette/OpenRoulette/{Id} | Example: https://localhost:44302/api/Roulette/OpenRoulette/13_ 
+_[PUT] host:port/api/Roulette/OpenRoulette/{Id} | Example: https://localhost:44302/api/Roulette/OpenRoulette/13_ 
 	
 	**Token Required**
 
 	"Result" (Example)
 	{
-	  "idRoulette": 13
+	  "status": "Success"
 	}
 
 
